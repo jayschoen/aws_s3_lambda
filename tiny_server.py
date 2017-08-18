@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 
 import boto3
 
+import random
+
 app = Flask(__name__)
 
 @app.route('/test')
@@ -35,3 +37,18 @@ def index():
 
   # render_template() looks in the templates directory
   return render_template('upload_page.html', message = message)
+
+
+
+
+@app.route('/status', methods=['GET'])
+def status():
+
+# return 'status test'
+  rand = random.randint(1, 3)
+  if rand == 1:
+    return 'continue'
+  elif rand == 2:
+    return 'continue'
+  else:
+    return 'exit'
