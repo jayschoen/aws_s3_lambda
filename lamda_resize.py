@@ -20,6 +20,10 @@ def handler(event, context):
         download_path = '/tmp/{}{}'.format(uuid.uuid4(), key)
         upload_path = '/tmp/resized-{}'.format(key)
         
+        print(record)
+        print(download_path)
+        print(upload_path)
+
         s3_client.download_file(bucket, key, download_path)
         resize_image(download_path, upload_path)
         s3_client.upload_file(upload_path, bucket.replace('origin', 'target'), key)
