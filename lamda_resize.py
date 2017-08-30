@@ -10,7 +10,7 @@ s3_client = boto3.client('s3')
      
 def resize_image(image_path, resized_path):
     with Image.open(image_path) as image:
-        image.thumbnail(tuple(x / 2 for x in image.size))
+        image.thumbnail((128, 128)) #tuple(x / 2 for x in image.size))
         image.save(resized_path)
      
 def handler(event, context):
@@ -27,4 +27,7 @@ def handler(event, context):
         s3_client.download_file(bucket, key, download_path)
         resize_image(download_path, upload_path)
         s3_client.upload_file(upload_path, bucket.replace('origin', 'target'), key)
+
+#boto3.resource('s3').Bucket(bucket).delete_key(key)
+        boto3.resource('s3').Object(bucket, key).delete()
 
