@@ -8,9 +8,12 @@
 
 <body>
   {{message}}
-  <form method="post" enctype="multipart/form-data" onsubmit="status_loop();">
-    <input type="file" name="file[]" multiple>
+  {{filename}}
+  <form id="image_resize_form" method="post" onsubmit="status_loop(); return false;">
+    <input id="upload" type="file" name="file">
     <input type="submit">
   </form>
+
+  <div id='status'></div>
 </body>
 </html>
