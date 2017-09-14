@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, abort, jsonify
 
 import boto3
 from botocore.errorfactory import ClientError
+### AWS credentials are stored in the ".aws" directory which gets put in the user's home directory during installation of BOTO
 
 import hashlib
 
